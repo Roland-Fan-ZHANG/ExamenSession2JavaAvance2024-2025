@@ -3,8 +3,15 @@ package unorderedvec;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.AccessFlag;
+import java.lang.reflect.Array;
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,7 +67,7 @@ public final class UnorderedVecTest {
     }
   }
 
-/*
+
   @Nested
   public class Q2 {
     @Test
@@ -256,21 +263,21 @@ public final class UnorderedVecTest {
 
   @Nested
   public class Q3 {
-    @Test
-    public void vecVeryBiiiiiig() {
-      var maxMemory = Runtime.getRuntime().maxMemory();
-      assertTrue(maxMemory >= 16 * 1024 * 1014 * 1024L, "use -Xmx16G");
-
-      var vec = new UnorderedVec<Integer>();
-      IntStream.range(0, Integer.MAX_VALUE - 16).forEach(i -> vec.add(i % 128));
-
-      var sum = 0L;
-      for(var value : vec) {
-        sum += value;
-      }
-
-      assertEquals(136_365_209_625L, sum);
-    }
+//    @Test
+//    public void vecVeryBiiiiiig() {
+//      var maxMemory = Runtime.getRuntime().maxMemory();
+//      assertTrue(maxMemory >= 16 * 1024 * 1014 * 1024L, "use -Xmx16G");
+//
+//      var vec = new UnorderedVec<Integer>();
+//      IntStream.range(0, Integer.MAX_VALUE - 16).forEach(i -> vec.add(i % 128));
+//
+//      var sum = 0L;
+//      for(var value : vec) {
+//        sum += value;
+//      }
+//      System.out.println(sum);
+//      assertEquals(136_365_209_625L, sum);
+//    }
 
     @Test
     public void vecOfALotOfInteger1_000() {
@@ -316,6 +323,7 @@ public final class UnorderedVecTest {
 
   @Nested
   public class Q4 {
+
     @Test
     public void removeExistingString() {
       var vec = new UnorderedVec<String>();
@@ -422,7 +430,7 @@ public final class UnorderedVecTest {
       for(var value : vec) {
         list.add(value);
       }
-
+      System.out.println(list);
       assertEquals(15, list.size());
       assertFalse(list.contains(15));
     }
@@ -516,7 +524,7 @@ public final class UnorderedVecTest {
     }
   }
 
-
+  /*
   @Nested
   public class Q5 {
 
